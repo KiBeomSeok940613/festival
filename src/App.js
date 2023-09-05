@@ -1,24 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import { NavLink, Route, Routes } from "react-router-dom";
+import Globalstyle from "./component/Globalstyle";
+import Main from "./pages/Main";
+import Detail from "./pages/Detail";
+import Aside from "./component/Aside";
+import { ThemeProvider } from "styled-components";
+import { useState } from "react";
 
+
+
+
+// import Example from "./pages/Example";
+// import Example2 from "./pages/Example2";
+// import Example3 from "./pages/Example3";
 function App() {
+
+  const light = {
+  colors: {
+    Primary : "hotpink",
+    Secondary : "oranged",
+
+  }
+}
+const dark = {
+  colors : {
+    Primary : "gray",
+    Secondary: "#e9e9e9",
+    
+
+
+  }
+}
+const [themeConfig, setThemeConfig] = useState("light");
+const DarkMode = themeConfig === "light" ? light : dark;
+const ThemeSelect = () => {
+  setThemeConfig(themeConfig === "light" ? "dark" : "light")
+}
+
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      
+    {themeConfig}
+    <ThemeProvider theme={DarkMode}>
+    <Globalstyle />
+    <Aside ThemeSelect={ThemeSelect} themeConfig = {themeConfig} />
+    {/* 리액트에선 무조건 NavLink 사용 a태그 사용x */}
+    
+    
+    <Routes>
+       <Route path="/" element={<Main/>}></Route>
+       {/* <Route path="/example2" element={<Example2/>}></Route>
+      <Route path="/example" element={<Example/>}></Route> */}
+      {/* <Route path="/" element={<Example3/>}></Route> */}
+      <Route path="/" element={<Aside/>}></Route>
+      
+      {/* / 후 뒤에 주소가 붙으면 ...에 주소를 보여주세요 */}
+      {/* 홈페이지 딱 열었을때 먼저 보여줄 페이지"/" " */}
+    </Routes>
+    </ThemeProvider>
+    {/* Routes 밖에 쓰면 고정됨 */}
+    </>
+    // 이제 모든 스타일 은 여기서 관리
   );
 }
 
