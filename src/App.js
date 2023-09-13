@@ -1,31 +1,35 @@
 import { NavLink, Route, Routes } from "react-router-dom";
 import Globalstyle from "./component/Globalstyle";
-import Main from "./pages/Main";
+ import Main from "./pages/Main";
 import Detail from "./pages/Detail";
 import Aside from "./component/Aside";
 import { ThemeProvider } from "styled-components";
 import { useState } from "react";
 
-
-
-
 // import Example from "./pages/Example";
 // import Example2 from "./pages/Example2";
-// import Example3 from "./pages/Example3";
+ import Example3 from "./pages/Example3";
+import Example4 from "./pages/Example4";
+import Datepicker from "./pages/Datepicker";
+
 function App() {
 
   const light = {
   colors: {
     Primary : "hotpink",
     Secondary : "oranged",
-
+    BgColor: "#e8e8e8",
+    Color : "#000",
+    ContentBg: "#fff"
   }
 }
 const dark = {
   colors : {
-    Primary : "gray",
+    Primary : "#272929",
     Secondary: "#e9e9e9",
-    
+    BgColor: "#e3e3e3",
+    Color : "#e9e9e9",
+    ContentBg: "#272929"
 
 
   }
@@ -43,7 +47,7 @@ const ThemeSelect = () => {
   return (
     <>
       
-    {themeConfig}
+    
     <ThemeProvider theme={DarkMode}>
     <Globalstyle />
     <Aside ThemeSelect={ThemeSelect} themeConfig = {themeConfig} />
@@ -51,11 +55,15 @@ const ThemeSelect = () => {
     
     
     <Routes>
-       <Route path="/" element={<Main/>}></Route>
+        <Route path="/" element={<Main/>}></Route>
        {/* <Route path="/example2" element={<Example2/>}></Route>
       <Route path="/example" element={<Example/>}></Route> */}
-      {/* <Route path="/" element={<Example3/>}></Route> */}
-      <Route path="/" element={<Aside/>}></Route>
+      <Route path="/ex3" element={<Example3/>}></Route>
+      <Route path="/ex4" element={<Example4/>}></Route>
+      <Route path="/Aside" element={<Aside/>}></Route>
+      <Route path="/datepicker" element={<Datepicker/>}></Route>
+      <Route path="/detail/:seq" element={<Detail/>}></Route>
+     
       
       {/* / 후 뒤에 주소가 붙으면 ...에 주소를 보여주세요 */}
       {/* 홈페이지 딱 열었을때 먼저 보여줄 페이지"/" " */}
