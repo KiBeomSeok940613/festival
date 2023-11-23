@@ -24,7 +24,7 @@ function Example() {
     }
     return e.job === job
   })
-  //  뒤에 값이 data 로 들어가는 하지만 data 값 을 바꾸려면 setData 를 사용 해야함 
+  //  뒤에 값이 data 로 들어가는 하지만 data 값 을 바꾸려면 setData 를 사용 해야 
   const filterJob =[...new Set(data.map(e => e.job))];
   
   console.log(filterJob)
